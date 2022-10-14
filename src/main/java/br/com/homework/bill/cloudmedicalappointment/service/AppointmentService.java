@@ -1,5 +1,6 @@
 package br.com.homework.bill.cloudmedicalappointment.service;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,6 +21,9 @@ public class AppointmentService {
 		String hash = getUUID();
 		Appointment appointment = new Appointment(hash,455L,AppointmentType.APPOINTMENT,"Dr. Roger Lin","Clínico Geral");
 		appointmentMap.put(hash, appointment);
+		hash = getUUID();
+		appointment = new Appointment(hash,202L,AppointmentType.APPOINTMENT,"Dr. Rosangela Lemos","Ortopedia");
+		appointmentMap.put(hash, appointment);
 	}
 
 	private static String getUUID() {
@@ -28,5 +32,17 @@ public class AppointmentService {
 	
 	public List<Appointment> findAll(){
 		return appointmentMap.values().stream().collect(Collectors.toList());
+	}
+
+	public Appointment findById(String id) {
+		return appointmentMap.get(id);
+	}
+
+	public Appointment create(Appointment appointment) {
+		String hash = getUUID();
+		appointment.setHash(hash);
+		appointment.setEntryDate(LocalDateTime.now());
+		appointmentMap.put(hash, appointment);
+		return appointment;
 	}
 }

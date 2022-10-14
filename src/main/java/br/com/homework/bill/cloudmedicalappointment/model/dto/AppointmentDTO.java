@@ -2,6 +2,7 @@ package br.com.homework.bill.cloudmedicalappointment.model.dto;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import br.com.homework.bill.cloudmedicalappointment.enums.AppointmentType;
@@ -23,8 +24,10 @@ public class AppointmentDTO {
 	
 	private String diagnosis;
 	
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
 	private LocalDateTime entryDate;
 	
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
 	private LocalDateTime exitDate;
 	
 	private Double bill;
