@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
 import br.com.homework.bill.cloudmedicalappointment.enums.AppointmentType;
+import br.com.homework.bill.cloudmedicalappointment.exceptions.AppointmentNotFundException;
 import br.com.homework.bill.cloudmedicalappointment.model.Appointment;
 
 @Service
@@ -35,7 +36,11 @@ public class AppointmentService {
 	}
 
 	public Appointment findById(String id) {
-		return appointmentMap.get(id);
+		Appointment appointment = appointmentMap.get(id);
+		if(appointment == null) {
+			throw new AppointmentNotFundException(id);
+		}
+		return appointment;
 	}
 
 	public Appointment create(Appointment appointment) {

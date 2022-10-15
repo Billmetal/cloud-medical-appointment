@@ -16,9 +16,12 @@ import br.com.homework.bill.cloudmedicalappointment.model.dto.AppointmentCreateD
 import br.com.homework.bill.cloudmedicalappointment.model.dto.AppointmentDTO;
 import br.com.homework.bill.cloudmedicalappointment.model.mapper.AppointmentMapper;
 import br.com.homework.bill.cloudmedicalappointment.service.AppointmentService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/appointment")
+@Api(tags = "Appointment Controller")
 public class AppointmentController {
 	
 	private final AppointmentService appointmentService;
@@ -31,6 +34,7 @@ public class AppointmentController {
 
 
 	@GetMapping
+	@ApiOperation("Find All Appointments")
 	public ResponseEntity<List<AppointmentDTO>> findAll(){
 		List<Appointment> appointmentList = appointmentService.findAll();
 		List<AppointmentDTO> result = appointmentMapper.toAppointmentDTOList(appointmentList);
