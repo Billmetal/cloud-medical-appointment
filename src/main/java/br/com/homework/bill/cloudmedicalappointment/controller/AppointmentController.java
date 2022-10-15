@@ -4,9 +4,11 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -54,5 +56,19 @@ public class AppointmentController {
 		Appointment appointmentSaved = appointmentService.create(appointment);
 		AppointmentDTO result = appointmentMapper.toAppointmentDTO(appointmentSaved);
 		return ResponseEntity.status(HttpStatus.CREATED).body(result);
+	}
+	
+	@PutMapping("/{id}")
+	public ResponseEntity<AppointmentDTO> update(@PathVariable String id, @RequestBody AppointmentCreateDTO appointmentCreateDTO){
+		Appointment appointment = appointmentMapper.toAppointment(appointmentCreateDTO);
+		Appointment appointmentSaved = appointmentService.update(id,appointment);
+		AppointmentDTO result = appointmentMapper.toAppointmentDTO(appointmentSaved);
+		return ResponseEntity.status(HttpStatus.OK).body(result);
+	}
+	
+	@DeleteMapping("/{id}")
+	public ResponseEntity<?> delete(@PathVariable String id){
+		appointmentService.delete(id);
+		return ResponseEntity.noContent().build();
 	}
 }

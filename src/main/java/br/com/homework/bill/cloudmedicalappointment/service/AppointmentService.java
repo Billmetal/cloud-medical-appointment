@@ -50,4 +50,19 @@ public class AppointmentService {
 		appointmentMap.put(hash, appointment);
 		return appointment;
 	}
+
+	public void delete(String id) {
+		findById(id);
+		appointmentMap.remove(id);
+	}
+
+	public Appointment update(String id, Appointment appointment) {
+		Appointment byId = findById(id);
+		byId.setAppointmentType(appointment.getAppointmentType());
+		byId.setDoctorName(appointment.getDoctorName());
+		byId.setMedicalSpecialty(appointment.getMedicalSpecialty());
+		appointmentMap.replace(id, byId);
+		return byId;
+	}
+
 }

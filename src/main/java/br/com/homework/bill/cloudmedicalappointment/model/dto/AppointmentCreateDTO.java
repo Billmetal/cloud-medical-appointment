@@ -4,7 +4,7 @@ import br.com.homework.bill.cloudmedicalappointment.enums.AppointmentType;
 
 public class AppointmentCreateDTO {
 
-private Long patientId;
+	private Long patientId;
 	
 	private AppointmentType appointmentType;
 	
