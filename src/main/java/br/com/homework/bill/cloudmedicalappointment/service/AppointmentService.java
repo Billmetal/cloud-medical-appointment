@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
-import br.com.homework.bill.cloudmedicalappointment.enums.AppointmentType;
 import br.com.homework.bill.cloudmedicalappointment.exceptions.AppointmentNotFundException;
 import br.com.homework.bill.cloudmedicalappointment.model.Appointment;
 
@@ -17,15 +16,6 @@ import br.com.homework.bill.cloudmedicalappointment.model.Appointment;
 public class AppointmentService {
 
 	private static Map<String,Appointment> appointmentMap = new HashMap<>();
-	
-	static {
-		String hash = getUUID();
-		Appointment appointment = new Appointment(hash,455L,AppointmentType.APPOINTMENT,"Dr. Roger Lin","Clínico Geral");
-		appointmentMap.put(hash, appointment);
-		hash = getUUID();
-		appointment = new Appointment(hash,202L,AppointmentType.APPOINTMENT,"Dr. Rosangela Lemos","Ortopedia");
-		appointmentMap.put(hash, appointment);
-	}
 
 	private static String getUUID() {
 		return UUID.randomUUID().toString().replace("-","");
@@ -63,6 +53,16 @@ public class AppointmentService {
 		byId.setMedicalSpecialty(appointment.getMedicalSpecialty());
 		appointmentMap.replace(id, byId);
 		return byId;
+	}
+
+	public Appointment end(String id) {
+		Appointment appointment = findById(id);
+		appointment.setDiagnosis("Parecer médico sobre esta consulta, como diagnóstico , próxima fase de tratamento e "
+				+ "medicação a ser tomada pelo paciente .");
+		appointment.setBill(250.00);
+		appointment.setExitDate(LocalDateTime.now());
+		appointmentMap.replace(id, appointment);
+		return appointment;
 	}
 
 }

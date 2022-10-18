@@ -71,4 +71,10 @@ public class AppointmentController {
 		appointmentService.delete(id);
 		return ResponseEntity.noContent().build();
 	}
+	
+	@PostMapping("/{id}")
+	public ResponseEntity<AppointmentDTO> endAppointment(@PathVariable String id){
+		Appointment appointmentEnded = appointmentService.end(id);
+		return ResponseEntity.ok(appointmentMapper.toAppointmentDTO(appointmentEnded));
+	}
 }
