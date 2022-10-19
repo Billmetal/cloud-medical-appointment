@@ -12,7 +12,7 @@ public class AppointmentDTO {
 
 	private String hash;
 	
-	private Long id;
+	private Long clinicId;
 	
 	private Long patientId;
 	
@@ -40,12 +40,12 @@ public class AppointmentDTO {
 		this.hash = hash;
 	}
 
-	public Long getId() {
-		return id;
+	public Long getClinicId() {
+		return clinicId;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setClinicId(Long id) {
+		this.clinicId = id;
 	}
 
 	public Long getPatientId() {

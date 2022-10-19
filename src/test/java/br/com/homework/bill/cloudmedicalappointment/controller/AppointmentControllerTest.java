@@ -13,7 +13,7 @@ import br.com.homework.bill.cloudmedicalappointment.model.dto.AppointmentCreateD
 import io.restassured.RestAssured;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class AppointmentControllerTest {
+class AppointmentControllerTest extends AbstractContainerBase {
 	
 	@LocalServerPort
 	private int randomPort;

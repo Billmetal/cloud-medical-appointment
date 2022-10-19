@@ -6,11 +6,21 @@ public class AppointmentCreateDTO {
 
 	private Long patientId;
 	
+	private Long clinicId;
+	
 	private AppointmentType appointmentType;
 	
 	private String doctorName;
 	
 	private String medicalSpecialty;
+
+	public Long getClinicId() {
+		return clinicId;
+	}
+
+	public void setClinicId(Long clinicId) {
+		this.clinicId = clinicId;
+	}
 
 	public Long getPatientId() {
 		return patientId;
