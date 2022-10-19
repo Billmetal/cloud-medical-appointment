@@ -25,7 +25,7 @@ class AppointmentControllerTest extends AbstractContainerBase {
 
 	@Test
 	void whenFindAllThenCheckResult() {
-		RestAssured.given().auth().basic("user", "user123")
+		RestAssured.given().auth().basic("YOUR_USERNAME", "YOUR_PASSWORD")
 			.when()
 			.get("/appointment")
 			.then()
@@ -41,7 +41,7 @@ class AppointmentControllerTest extends AbstractContainerBase {
 		createDTO.setPatientId(2100L);
 		createDTO.setClinicId(122L);
 		
-		RestAssured.given().auth().basic("user", "user123")
+		RestAssured.given().auth().basic("YOUR_USERNAME", "YOUR_PASSWORD")
 		.when()
 		.contentType(MediaType.APPLICATION_JSON_VALUE)
 		.body(createDTO)

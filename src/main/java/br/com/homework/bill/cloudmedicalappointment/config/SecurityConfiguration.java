@@ -20,8 +20,8 @@ public class SecurityConfiguration {
 	@Bean
 	public UserDetailsService userDetailsService() {
 	    InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
-	    manager.createUser(User.withUsername("user")
-	      .password("user123")
+	    manager.createUser(User.withUsername("YOUR_USERNAME")
+	      .password("YOUR_PASSWORD")
 	      .roles("USER")
 	      .passwordEncoder(new Function<String, String>() {
 			
